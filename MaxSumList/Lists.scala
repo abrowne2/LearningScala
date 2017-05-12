@@ -23,14 +23,14 @@ object Lists {
    * @return The sum of all elements in `xs`
    */
     def sum(xs: List[Int]): Int = {
-      if(xs.isEmpty == false)
+      if(!xs.isEmpty)
         xs.head + sum(xs.tail)
       else
         0
     }
 
   def aux(curMax: Int, xs: List[Int]): Int = {
-    if (xs.isEmpty == false) {
+    if (!xs.isEmpty) {
       if (curMax < xs.head)
         aux(xs.head, xs.tail)
       else
