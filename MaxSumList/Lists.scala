@@ -28,17 +28,6 @@ object Lists {
       else
         0
     }
-
-  def aux(curMax: Int, xs: List[Int]): Int = {
-    if (!xs.isEmpty) {
-      if (curMax < xs.head)
-        aux(xs.head, xs.tail)
-      else
-        aux(curMax, xs.tail)
-    } else {
-      curMax
-    }
-  }
   /**
    * This method returns the largest element in a list of integers. If the
    * list `xs` is empty it throws a `java.util.NoSuchElementException`.
@@ -56,6 +45,16 @@ object Lists {
       if(xs.isEmpty){
         throw new NoSuchElementException("Empty List")
       }
+      def aux(curMax: Int, xs: List[Int]): Int = {
+        if (!xs.isEmpty) {
+          if (curMax < xs.head)
+            aux(xs.head, xs.tail)
+          else
+            aux(curMax, xs.tail)
+        } else {
+          curMax
+        }
+      }      
       aux(xs.head,xs.tail)
     }
   }
