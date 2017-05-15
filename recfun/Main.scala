@@ -14,13 +14,13 @@ object Main {
    * Exercise 1
    */
     def pascal(c: Int, r: Int): Int = {
-		def fact(n: Int): Int = {
-			if(n == 0)
-				1
-			else
-				n * fact(n-1)
-		}
-		(fact(r) / (fact(c) * fact(r - c)))    	
+	def fact(n: Int): Int = {
+		if(n == 0)
+			1
+		else
+			n * fact(n-1)
+	}
+	(fact(r) / (fact(c) * fact(r - c)))    	
     }
   
   /**
@@ -28,22 +28,22 @@ object Main {
    */
     def balance(chars: List[Char]): Boolean = {
     	def isParen(c: Char): Boolean = (c == ')' || c == '(')
-		def branch(c: Char, chunk: List[Char], found: Boolean): Boolean = {
-			if(chunk.isEmpty){
-				found
+	def branch(c: Char, chunk: List[Char], found: Boolean): Boolean = {
+		if(chunk.isEmpty){
+			found
+		} else {
+			if(c == '('){
+				if(chunk.head == ')')
+					branch(c, chunk.tail, true)
+				else
+					branch(c, chunk.tail, false)
 			} else {
-				if(c == '('){
-					if(chunk.head == ')')
-						branch(c, chunk.tail, true)
-					else
-						branch(c, chunk.tail, false)
-				} else {
-					branch(chunk.head, chunk.tail, found)
-				}
+				branch(chunk.head, chunk.tail, found)
 			}
 		}
-		val parens = chars.filter(isParen)
-		if(parens.length == 1) false else branch(parens.head, parens.tail, true)
+	}
+	val parens = chars.filter(isParen)
+	if(parens.length == 1) false else branch(parens.head, parens.tail, true)
     }
   
   /**
